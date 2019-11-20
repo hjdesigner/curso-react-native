@@ -1,5 +1,5 @@
 export default {
-    fontFamoly: 'Lato',
+    fontFamily: 'Lato',
     colors: {
         today: '#b13b44',
         secondary: '#FFF',
