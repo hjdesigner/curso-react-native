@@ -7,6 +7,7 @@ import {
     FlatList,
     TouchableOpacity,
     Platform,
+    Alert,
 } from 'react-native'
 import moment from 'moment'
 import 'moment/locale/pt-br'
@@ -146,6 +147,11 @@ export default class Agenda extends Component {
         this.setState({ tasks, showAddTask: false }, this.filterTasks)
     }
 
+    deleteTask = id => {
+        const tasks = this.state.tasks.filter(task => task.id !== id)
+        this.setState({ tasks }, this.filterTasks)
+    }
+
     filterTasks = () => {
         let visibleTasks = null
         if (this.state.showDoneTasks) {
@@ -177,6 +183,7 @@ export default class Agenda extends Component {
         })
         this.setState({tasks}, this.filterTasks)
     }
+    
     render() {
         return (
             <View style={styles.container}>
@@ -200,9 +207,11 @@ export default class Agenda extends Component {
                 <View style={styles.tasksContainer}>
                     <FlatList data={this.state.visibleTasks}
                         keyExtractor={item => `${item.id}`}
-                        renderItem={({ item }) => <Task {...item} toggleTask={this.toggleTask} />} />
+                        renderItem={({ item }) => <Task {...item} onDelete={this.deleteTask} toggleTask={this.toggleTask} />} />
                 </View>
-                <ActionButton buttonColor={commonStyles.colors.today} onPress={() => this.setState({ showAddTask: true })} />
+                <ActionButton
+                    buttonColor={commonStyles.colors.today}
+                    onPress={() => this.setState({ showAddTask: true })} />
             </View>
         )
     }
