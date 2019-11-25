@@ -30,7 +30,7 @@ export default props => {
                     {props.desc}
                 </Text>
                 <Text style={styles.date}>
-                    {moment().locale('pt-br').format('ddd, D [de] MMMM')}
+                    {moment().locale('pt-br').format('ddd, D [de] MMMM [de] YYYY')}
                 </Text>
             </View>
         </View>
