@@ -32,10 +32,10 @@ export default class AddTask extends Component {
 
     handleDateAndroidChanged = () => {
         DatePickerAndroid.open({
-            date: this.state.date,
+            date: this.state.date
         }).then(e => {
             if (e.action !== DatePickerAndroid.dismissedAction) {
-                const momentDate = moment(this.state.date);
+                const momentDate = moment(this.state.date)
                 momentDate.date(e.day)
                 momentDate.month(e.month)
                 momentDate.year(e.year)
